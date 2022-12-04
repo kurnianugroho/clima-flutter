@@ -1,3 +1,4 @@
+import 'package:clima/services/location.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -13,10 +14,18 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: RaisedButton(
           onPressed: () {
             //Get the current location
+            getCurrentLocation();
           },
           child: Text('Get Location'),
         ),
       ),
     );
+  }
+
+  void getCurrentLocation() async {
+    Location location = Location();
+    await location.getCurrentLocation();
+    print('lat: ' + location.getLatitude().toString());
+    print('long: ' + location.getLongitude().toString());
   }
 }
